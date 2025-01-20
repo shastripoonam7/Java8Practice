@@ -11,6 +11,8 @@ class CustomerNames implements Consumer<String>{
 		
 	}
 	
+	
+	
 }
 
 public class ConsumerDemo {
@@ -25,6 +27,17 @@ public class ConsumerDemo {
 		
 		CustomerNames customerNames = new CustomerNames();
 		list.forEach(customerNames);
+		
+		System.out.println("--*--*--Demostrating andThen() usage --*--*--*--");
+		
+		Consumer<Integer> c1 = i->System.out.println("I am first consumer:"+i);
+         
+	    Consumer<Integer> c2 = i->System.out.println("I am second consumer:"+2*i);
+	    
+	    Consumer<Integer> c3 = i->System.out.println("I am third consumer:"+3*i);
+	         
+	    c1.andThen(c2).andThen(c3).accept(5);
+		
 	}
 
 }

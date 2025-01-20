@@ -32,11 +32,11 @@ public class LocalDateTimeDemo {
 		System.out.println("withZoneSameInstant demo:"+zoned.withZoneSameInstant(zoneId));
 		// Feature 3 : Duration and Period API
 		
-		System.out.println("Date Difference using Period:"+Period.between(LocalDate.now(), LocalDate.of(1995, 12, 16)));
+		System.out.println("Date Difference using Period:"+Period.between(LocalDate.now(), LocalDate.of(1995, 12, 16)).getYears());
 		LocalDateTime dateTime1=dateTime.plus(Duration.ofDays(5));
 		System.out.println("dateTime after adding 5 days:"+dateTime);
 		
-		System.out.println("gap between two dates:"+Duration.between(dateTime, dateTime1));
+		System.out.println("gap between two dates:"+Duration.between(dateTime, dateTime1).toDays());
 		
 		// Feature 4 : ChronoUnits Enum : java.time.temporal.ChronoUnit enum is added in Java 8 to replace integer values used in old API to represent day, month etc.
 		LocalDate date = LocalDate.now();
@@ -45,6 +45,17 @@ public class LocalDateTimeDemo {
 		System.out.println("using chronunit months:"+date.plus(1, ChronoUnit.MONTHS));
 		System.out.println("Using chronounit nextweek:"+date.plus(3,ChronoUnit.WEEKS));
 		System.out.println("using chronounit decades:"+date.plus(1,ChronoUnit.DECADES));
+		
+		// 20-01-2025 converting a a date format into other format
+		System.out.println("----------20-01-2024----");
+		// hh is 12 hour format HH is 24 hour format
+		LocalDateTime  localDateTime = LocalDateTime.parse("16-12-1995 15:00:00",DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
+		System.out.println("localDateTime"+localDateTime);
+		// Change format to  yyyy-MM-dd hh:mm:ss
+		String  localDateTime1 = localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'hh:mm:ss"));
+		LocalDateTime parseDate = LocalDateTime.parse(localDateTime1);
+		System.out.println("ParsedDate:"+parseDate);
+		
 		
 		
 		
